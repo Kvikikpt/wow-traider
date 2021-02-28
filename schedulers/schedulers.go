@@ -4,11 +4,12 @@ import (
 	"context"
 	"fmt"
 	"github.com/Kvikikpt/wow-traider/db"
+	"github.com/carlescere/scheduler"
 	"log"
 	"time"
 )
 
-func TestJob() {
+func testJob() {
 	t := time.Now()
 	fmt.Println("Time's up! @", t.UTC())
 
@@ -19,4 +20,8 @@ func TestJob() {
 	}
 
 	fmt.Println(greeting)
+}
+
+func InitSchedulers() {
+	_, _ = scheduler.Every(60).Seconds().NotImmediately().Run(testJob)
 }
